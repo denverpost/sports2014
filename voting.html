@@ -1,5 +1,8 @@
 
-<!-- With each section: -->
+<!-- With each section: 
+1. Add the specified markup and javascript.
+2. For each section after the first, increment the "section_1" to "section_2" "section_3" etc. wherever that text appears.
+-->
 
 <!--
 =======================================
@@ -11,17 +14,27 @@ AT THE TOP OF EACH SECTION
 =======================================
 ON THE BOTTOM OF EACH DISTINCT ITEM
 =======================================
+1. Add the span before the closing </p> element. 
+2. For each item, increment the id by 1.
 -->
+<span><a href="#" class="pick" id="1" onClick="section_1_update_form(this); return false;">pick this for the XXXXXX in 2014</a></span>
 
 <!--
 =======================================
 ON THE BOTTOM OF EACH SECTION
 =======================================
 -->
-    <input class="submit" id="section_1submit" type="image" src="http://extras.mnginteractive.com/live/media/site36/2014/0905/20140905_035618_grade-submit.gif" alt="Submit Your Grade">
+    <input class="submit" id="section_1_submit" type="image" src="http://extras.mnginteractive.com/live/media/site36/2014/0905/20140905_035618_grade-submit.gif" alt="Submit Your Grade">
 </form>
 <div id="result"><p></p></div>
 <script>
+function section_1_update_form(element)
+{
+    jQuery('#section_1 #grade_input').val(lookup[element.id]);
+    jQuery('#section_1_submit').prop('disabled', false);
+    return false;
+}
+
 $('#section_1').submit(function(e)
 {
     var post_data = $(this).serializeArray();
