@@ -1,0 +1,51 @@
+
+<!-- With each section: -->
+
+<!--
+=======================================
+AT THE TOP OF EACH SECTION
+=======================================
+-->
+<form id="section_1" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
+<!--
+=======================================
+ON THE BOTTOM OF EACH DISTINCT ITEM
+=======================================
+-->
+
+<!--
+=======================================
+ON THE BOTTOM OF EACH SECTION
+=======================================
+-->
+    <input class="submit" id="section_1submit" type="image" src="http://extras.mnginteractive.com/live/media/site36/2014/0905/20140905_035618_grade-submit.gif" alt="Submit Your Grade">
+</form>
+<div id="result"><p></p></div>
+<script>
+$('#section_1').submit(function(e)
+{
+    var post_data = $(this).serializeArray();
+    var formURL = $(this).attr('action');
+    $.ajax(
+    {
+        url: formURL,
+        type: 'POST',
+        data: post_data,
+        success:function(data, text_status, jqXHR) 
+        {
+            $('#section_1 #result').show();
+            $('#section_1 .submit').hide();
+            $('#section_1 #result p').html('<strong>Readers rated this a ' + letter_grade + ' on average, ' + voters + ' have voted.</strong><span></span><svg class=\'chart\'></svg>');
+
+            // If we have a breakdown of the letter grades, we publish them.
+            $('#section_1 #result p').text('Thanks!');
+        },
+        error: function(jqXHR, text_status, error_thrown) 
+        {
+            console.log(data, text_status, error_thrown);
+        }
+    });
+    e.preventDefault(); // STOP default action
+    $(this).attr('action', '');
+});
+</script>
