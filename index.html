@@ -59,7 +59,7 @@
     <script>
     function update_form(form_id, element)
     {
-        var post_data = [{name: "grade_input", value: element.id}];
+        var post_data = [{name: "grade_input", value: element.id}, {name: "slug", value: form_id}];
         var formURL = $('#' + form_id).attr('action');
         $.ajax(
         {
