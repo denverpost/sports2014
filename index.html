@@ -332,13 +332,13 @@
 <!-- SECTION WITH SIDEBARS & TOOLTIP VIDEO -->
 <div class="row">
 	<div class="large-10 large-centered medium-11 medium-centered small-12 columns">
-
+<form id="section_1" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
 		<h3 class="subheading">Best Moments</h3>
 		<div class="large-6 medium-6 small-12 columns inset-video-right">
 			<img src="http://placehold.it/1200x600&text=Side+Photo" alt="alt" />
 			<p class="caption">Side photo caption.</p>
 		</div>
-		<p><strong>AFC championship</strong>. On Jan. 19, for the first time since the Broncos opened Sports Authority Field at Mile High in 2001, confetti rained upon the field. Beating the perennial powerhouse Patriots, 26-16, further legitimized the Broncos’ first conference championship in 15 years.</p>
+		<p><strong>AFC championship</strong>. On Jan. 19, for the first time since the Broncos opened Sports Authority Field at Mile High in 2001, confetti rained upon the field. Beating the perennial powerhouse Patriots, 26-16, further legitimized the Broncos’ first conference championship in 15 years.<span><a href="#" class="pick" id="1" onClick="section_1_update_form(this); return false;">This is my favorite 2014 moment</a></span></p>
 		<p><strong>TD No. 509</strong>. The game against the San Francisco 49ers, <a href="http://www.denverpost.com/broncos/ci_26759835/peyton-manning-passes-brett-favre-td-record-509th" target="_blank">a 42-17 Broncos rout</a> on Oct. 19 at Sports Authority Field, was played before more than 77,000 and on Sunday night prime-time television. Manning entered the game needing two TD passes to tie Favre’s mark of 508, which Manning got in the first quarter with a three-yard completion to Emmanuel Sanders and a 20-yard catch-and-run by Wes Welker. The record-setting <a href="http://blogs.denverpost.com/broncos/2014/10/21/watch-peyton-manning-micd-record-touchdown-509/30484/" target="_blank">509th career TD pass</a> fittingly went to top receiver Demaryius Thomas on an eight-yard pass near the right pylon late in the first half. The Broncos receivers then used the historic ball as a prop in a keep-away game from Manning, a celebration that was staged during a Friday practice by Manning himself. He finished the game with 510.</p>
 		
 		<p><strong>Brandon Barnes' inside-the-park homer</strong>. On June 14, the Rockies, on Barnes' <a href="http://www.denverpost.com/rockies/ci_25964811/brandon-barnes-inside-park-home-run-rallies-rockies" target="_blank">inside-the-parker</a>, swept the Giants in San Francisco. It was Colorado's best series of 2014. They threw the sink at the Giants, winning with defense, hitting, starting pitching, the bullpen and base-running. That the Giants went on to win the World Series and the Rockies lost 96 games is an important illustration. The Rockies showed great promise, but seasons aren't won in June. And the Rockies have a long way to go to be relevant in September.</p>
@@ -365,7 +365,44 @@
 		<p><strong>Rapids' comeback win in Vancouver</strong>. The Rapids were 1-13-3 when allowing the first goal in 2014. But that one comeback win was a plum, coming in the fourth game of what started as a promising campaign. The Rapids <a href="http://www.denverpost.com/rapids/ci_25542387/rapids-jose-mari-quick-contribute-goal-oriented-mls" target="_blank">were down 1-0</a> to the Vancouver Whitecaps on April 5 when a controversial 77th minute red card to Vancouver’s Matias Laba opened the door. Two minutes after going up a man, Rapids midfielder Jose Mari hit a long-range, physics-bending strike that pinged off the inside of the far post for the equalizer. Two minutes later, Mari capped off the comeback with a right-footed bender from just outside the penalty area.</p>
 		<p><strong>Mikaela Shiffrin makes history</strong>. Midway through her second run of slalom at the Sochi Olympics, Mikaela Shiffrin had a seemingly insurmountable lead. Then she got off balance with her weight back. Her left ski came up in the air and she barely made it around the next gate. She thought the medal was gone and so did her mother, but Shiffrin gathered herself and fought back to win by 0.53 of a second, becoming the <a href="http://www.denverpost.com/olympics/ci_25198471/mikaela-shiffrin-colorado-leads-olympic-slalom-after-first" target="_blank">youngest Olympic slalom champion</a> in history.</p>
 		<p><strong>“Creek Mystique” returns</strong>. Chalk this up to one of those "you-had-to-be-there" moments. For 40 minutes in the 5A championship, Cherry Creek and Valor Christian battled in one of the best prep football games in recent memory. Cherry Creek’s legendary coach, Dave Logan, was looking to return the Bruins to the days of the "Creek Mystique,” and in a game in which the momentum shifted like a heavyweight prize fight, Creek proved to be ever-so-slightly better, <a href="http://www.denverpost.com/preps/ci_27035615/cherry-creek-defeats-valor-christian-classic-5a-championship" target="_blank">winning, 25-24</a>.</p>
-</section>
+ <input class="submit" id="section_1_submit" type="image" src="http://extras.mnginteractive.com/live/media/site36/2014/1211/20141211_053619_submit-pick.gif" alt="Submit Your Pick">
+</form>
+<div id="result"><p></p></div>
+<script>
+function section_1_update_form(element)
+{
+    jQuery('#section_1 #grade_input').val(lookup[element.id]);
+    jQuery('#section_1_submit').prop('disabled', false);
+    return false;
+}
+
+$('#section_1').submit(function(e)
+{
+    var post_data = $(this).serializeArray();
+    var formURL = $(this).attr('action');
+    $.ajax(
+    {
+        url: formURL,
+        type: 'POST',
+        data: post_data,
+        success:function(data, text_status, jqXHR) 
+        {
+            $('#section_1 #result').show();
+            $('#section_1 .submit').hide();
+            $('#section_1 #result p').html('<strong>Readers rated this a ' + letter_grade + ' on average, ' + voters + ' have voted.</strong><span></span><svg class=\'chart\'></svg>');
+
+            // If we have a breakdown of the letter grades, we publish them.
+            $('#section_1 #result p').text('Thanks!');
+        },
+        error: function(jqXHR, text_status, error_thrown) 
+        {
+            console.log(data, text_status, error_thrown);
+        }
+    });
+    e.preventDefault(); // STOP default action
+    $(this).attr('action', '');
+});
+</script></section>
 <!-- NEW SECTION LINK-->
 <section id="part4" class="omnitrig" data-omni-url="#part4" data-omni-title="Part 4: Forgettable Moments">
 <!-- SECTION WITH SIDEBARS & TOOLTIP VIDEO -->
