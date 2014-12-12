@@ -56,6 +56,31 @@
 	<script type="text/javascript" src="./js/vendor/modernizr.js"></script>
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
     <script type="text/javascript" src="//www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+    function update_form(form_id, element)
+    {
+        var post_data = [{name: "grade_input", value: element.id}];
+        var formURL = $('#' + form_id).attr('action');
+        $.ajax(
+        {
+            url: formURL,
+            type: 'POST',
+            data: post_data,
+            success:function(data, text_status, jqXHR) 
+            {
+                $(element).parent().removeClass('vote');
+                $(element).parent().addClass('voted');
+                $(element).parent().html('Thanks!');
+                // Hide the other vote links in that section
+                $('#' + form_id + ' span.vote').remove();
+            },
+            error: function(jqXHR, text_status, error_thrown) 
+            {
+                console.log(data, text_status, error_thrown);
+            }
+        });
+    }
+    </script>
 </head>
 <body>
 <!-- OMNITURE DATA -->
@@ -65,12 +90,12 @@
     <script type="text/javascript">
         s.trackExternalLinks = false
         s.pageName = document.title
-        s.channel = "State of Hope"
+        s.channel = "SPORTS2014"
         s.prop1 = "D=g"
-        s.prop2 = "State of Hope/?"
-        s.prop3 = "State of Hope/?/?"
-        s.prop4 = "State of Hope/?/?/?"
-        s.prop5 = "State of Hope/?/?/?/" + document.title
+        s.prop2 = "SPORTS2014/?"
+        s.prop3 = "SPORTS2014/?/?"
+        s.prop4 = "SPORTS2014/?/?/?"
+        s.prop5 = "SPORTS2014/?/?/?/" + document.title
         var s_code=s.t();if(s_code)document.write(s_code)
     </script>
     <noscript><img src="http://denverpost.112.2O7.net/b/ss/denverpost/1/H.17--NS/0" height="1" width="1" border="0" alt="" /></noscript>
@@ -242,6 +267,7 @@
 <div class="row">
 	<div class="large-10 large-centered medium-11 medium-centered small-12 columns">
 
+        <form id="section_2" name="section_2" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
 		<h3 class="subheading">Most Influential Sports Figures</h3>
 <div class="row">
 	<div class="large-9 large-centered medium-11 medium-centered small-12 columns">
@@ -252,11 +278,21 @@
 			<img src="http://placehold.it/1200x600&text=Side+Photo" alt="alt" />
 			<p class="caption">Side photo caption.</p>
 		</div>
-		<p><strong>Joe Ellis</strong>. When Pat Bowlen <a href="http://www.denverpost.com/broncos/ci_26199148/pat-bowlen-resigns-control-denver-broncos-acknowledges-dealing-alzheimers-disease" target="_blank">announced through the Denver Post</a> in July he would step down as Broncos owner after 30 seasons because of Alzheimer's disease, it was Ellis who was put in charge. Ellis is now the Broncos' chief executive officer as well as president, which means he has final-say authority on all team matters. Ellis is also in charge of the Pat Bowlen Trust, which states one of Bowlen’s seven children will eventually run the team.</p>
-		<p><strong>Peyton Manning</strong>. More than the mayor, more than the governor, the local team’s quarterback is the face of the city. Jay Cutler never did get it. Manning has always understood his responsibility beyond the field. He represents Denver well. More importantly, he lends civic pride and hope that the Broncos will win it all.</p>
-		<p><strong>Jeff Bridich</strong>. The Rockies <a href="http://www.denverpost.com/rockies/ci_26685903/dan-odowd-bill-geivett-resign-from-colorado-rockies" target="_blank">promoted Bridich</a>, their director of baseball operations since 2005, to general manager on Oct. 8. It was a sea change for the notoriously staid Colorado front office. Bridich replaced Dan O'Dowd after his 15 years in power, in which the Rockies played in just two postseasons. But Bridich also effectively replaced assistant GM Bill Geivett. Bridich's consolidation of power wields a heavy influence on the Rockies, but his biggest task &#8212; bigger than dealing with Troy Tulowitzki trade rumors and scraping the barrel for pitching &#8212; will be carving out some autonomy in the front office and proving himself on his own The Rockies often talk about collaboration in their front office. And that's nice &#8212; especially between Bridich and manager Walt Weiss. But it's counterproductive to have someone above him making the decisions.</p>
-		<p><strong>Kenneth Faried</strong>. The Manimal made his mark on the court with a stellar end to last season, which faded into a national headline-making stint with the USA Basketball. He won a gold medal, was named to the FIBA World Cup all-tournament team and then turned all of his NBA and international success into a four-year, $50 million contract extension. And all of this one year after he won the NBA's "Kia Community Assist Award" in February for his philanthropic contributions, as well as the J. Walter Kennedy Citizenship Award, given by the Professional Basketball Writers Association to the player, coach, or trainer who shows outstanding service and dedication to the community. Those things haven't stopped as Faried has continued to work toward the ideal of equality, tolerance and inclusion. </p>
-		<p><strong>Patrick Roy</strong>. The legendary former Avs goalie and Hockey Hall of Famer returned to coach the team to the playoffs for the first time since 2010, helping them go from 29th overall in the NHL to third his first season on the job while accumulating 112 regular-season points.</p>
+		<p><strong>Joe Ellis</strong>. When Pat Bowlen <a href="http://www.denverpost.com/broncos/ci_26199148/pat-bowlen-resigns-control-denver-broncos-acknowledges-dealing-alzheimers-disease" target="_blank">announced through the Denver Post</a> in July he would step down as Broncos owner after 30 seasons because of Alzheimer's disease, it was Ellis who was put in charge. Ellis is now the Broncos' chief executive officer as well as president, which means he has final-say authority on all team matters. Ellis is also in charge of the Pat Bowlen Trust, which states one of Bowlen’s seven children will eventually run the team.
+             <span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Peyton Manning</strong>. More than the mayor, more than the governor, the local team’s quarterback is the face of the city. Jay Cutler never did get it. Manning has always understood his responsibility beyond the field. He represents Denver well. More importantly, he lends civic pride and hope that the Broncos will win it all.
+             <span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Jeff Bridich</strong>. The Rockies <a href="http://www.denverpost.com/rockies/ci_26685903/dan-odowd-bill-geivett-resign-from-colorado-rockies" target="_blank">promoted Bridich</a>, their director of baseball operations since 2005, to general manager on Oct. 8. It was a sea change for the notoriously staid Colorado front office. Bridich replaced Dan O'Dowd after his 15 years in power, in which the Rockies played in just two postseasons. But Bridich also effectively replaced assistant GM Bill Geivett. Bridich's consolidation of power wields a heavy influence on the Rockies, but his biggest task &#8212; bigger than dealing with Troy Tulowitzki trade rumors and scraping the barrel for pitching &#8212; will be carving out some autonomy in the front office and proving himself on his own The Rockies often talk about collaboration in their front office. And that's nice &#8212; especially between Bridich and manager Walt Weiss. But it's counterproductive to have someone above him making the decisions.
+             <span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Kenneth Faried</strong>. The Manimal made his mark on the court with a stellar end to last season, which faded into a national headline-making stint with the USA Basketball. He won a gold medal, was named to the FIBA World Cup all-tournament team and then turned all of his NBA and international success into a four-year, $50 million contract extension. And all of this one year after he won the NBA's "Kia Community Assist Award" in February for his philanthropic contributions, as well as the J. Walter Kennedy Citizenship Award, given by the Professional Basketball Writers Association to the player, coach, or trainer who shows outstanding service and dedication to the community. Those things haven't stopped as Faried has continued to work toward the ideal of equality, tolerance and inclusion.
+             <span class="vote"><a href="#" class="pick" id="2" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Patrick Roy</strong>. The legendary former Avs goalie and Hockey Hall of Famer returned to coach the team to the playoffs for the first time since 2010, helping them go from 29th overall in the NHL to third his first season on the job while accumulating 112 regular-season points.
+             <span class="vote"><a href="#" class="pick" id="3" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
 		<section class="large-6 medium-6 small-12 columns inset chart right hide-for-small">
 			<h3 class="subheading">Sidebar Graphic</h3>
 			<p>Intro to the sidebar graphic</p>
@@ -264,12 +300,24 @@
 				<img src="http://placehold.it/1000x800&text=Graphic" />
 			</div>
 		</section>
-		<p><strong>Nathan MacKinnon</strong>. The first overall pick of the 2013 NHL draft, McKinnnon led all rookies with 63 points in the 2013-14 regular season and was the runaway winner for the Calder Trophy, given to the league’s best rookie. He was the youngest ever to win the award, coming in at only 18 years and 224 days on the final day of season. So far this season, he’s already among the Avs’ top two players in points.</p>
-		<p><strong>Jim McElwain</strong>. In his third season on the job, McElwain guided Colorado State to a stunningly successful season (10-2), despite a disappointing loss to Air Force that ended the Rams' regular season. He did it with a savvy and pragmatic embrace of the core holdover players from the Steve Fairchild era &#8212; including quarterback Garrett Grayson, tackle Ty Sambrailo and linebackers Aaron Davis and Max Morgan – and adding talent behind them. Plus, his staff was an invigorating mix of veterans and young coaches, and it got the most out of the Rams. Now he’s off to Gainesville to see if he can do the same for the Florida Gators.</p>
-		<p><strong>Mikaela Shiffrin</strong>. Despite being only 18, the EagleVail skier was supposed to win the slalom at the Sochi Olympics. She was the reigning world champion and had dominated World Cup slalom for two seasons. Being the heavy favorite could have been too heavy a burden for some, but Shiffrin came through, showing America what fans of ski racing in Colorado have known for more than two years now: Shiffrin is a special athlete with a sparkling personality and a brilliant future.</p>
-		<p><strong>Gabby Loya</strong>. Wheat Ridge sophomore Gabby Loya lives for softball. In the 4A state quarterfinal, she cranked a walk-off double in the bottom of the seventh to power the Farmers into the next round. Loya's is <a href="http://www.denverpost.com/hochman/ci_26751286/dear-gabby-keeps-smiling" target="_blank">truly a comeback story</a>. Diagnosed with leukemia the summer before her freshman year of high school, she has battled the disease. With her leukemia in remission, Loya returned to the field in full form, winning the Jeffco 4A Player of the Year award.</p>
-		<p><strong>Terrance Knighton</strong>. Think back to September, when the second video of Ray Rice had come out, the one of him striking his then fiancée in a casino elevator. Rice had earlier been handed a mere two-game suspension for the incident, but the latest evidence that was made public was too much for many – including the Broncos’ defensive tackle, Terrance Knighton – to bear. So Knighton said something. He said something bold and he said at a time when many with fame and money still (although less so) choose to steer clear of contentious social issues. "I don't give a damn who u are or how much money you make," <a href="http://blogs.denverpost.com/broncos/2014/09/08/terrance-knighton-ray-rice-tweets/29292/" target="_blank">he tweeted</a>. "No place for this. As players we always speak on how we are unfairly treated, well now what?" He has since spoken out on the <a href="https://twitter.com/MrKnighton2u/status/537069201140486145" target="_blank">Darren Wilson trial</a> and <a href="https://twitter.com/MrKnighton2u/status/540324093782798336" target="_blank">Eric Garner</a> case. He's one of the few who has a platform and actually uses it.</p>
-		<p><strong>Pablo Mastroeni</strong>. When Oscar Pareja bolted for Dallas last offseason, the Rapids handed the keys to a playoff-caliber team to club legend Pablo Mastroeni. Just months removed from retiring as a player, Mastroeni brought a thoughtful, philosophical approach to Commerce City, preaching hard work, teamwork and a de-emphasis on results. Early on it looked like a masterstroke by the Rapids’ front office, but injuries and a lack of defensive depth helped to spoil Mastroeni’s first season. His unorthodoxed lineup decisions frustrated his critics, and the Rapids slogged on a 14-game winless streak to miss the playoffs. For better or worse, Mastroeni was the most influential figure in Colorado soccer in 2014.</p>
+		<p><strong>Nathan MacKinnon</strong>. The first overall pick of the 2013 NHL draft, McKinnnon led all rookies with 63 points in the 2013-14 regular season and was the runaway winner for the Calder Trophy, given to the league’s best rookie. He was the youngest ever to win the award, coming in at only 18 years and 224 days on the final day of season. So far this season, he’s already among the Avs’ top two players in points.
+             <span class="vote"><a href="#" class="pick" id="4" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Jim McElwain</strong>. In his third season on the job, McElwain guided Colorado State to a stunningly successful season (10-2), despite a disappointing loss to Air Force that ended the Rams' regular season. He did it with a savvy and pragmatic embrace of the core holdover players from the Steve Fairchild era &#8212; including quarterback Garrett Grayson, tackle Ty Sambrailo and linebackers Aaron Davis and Max Morgan – and adding talent behind them. Plus, his staff was an invigorating mix of veterans and young coaches, and it got the most out of the Rams. Now he’s off to Gainesville to see if he can do the same for the Florida Gators.
+             <span class="vote"><a href="#" class="pick" id="5" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Mikaela Shiffrin</strong>. Despite being only 18, the EagleVail skier was supposed to win the slalom at the Sochi Olympics. She was the reigning world champion and had dominated World Cup slalom for two seasons. Being the heavy favorite could have been too heavy a burden for some, but Shiffrin came through, showing America what fans of ski racing in Colorado have known for more than two years now: Shiffrin is a special athlete with a sparkling personality and a brilliant future.
+             <span class="vote"><a href="#" class="pick" id="6" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Gabby Loya</strong>. Wheat Ridge sophomore Gabby Loya lives for softball. In the 4A state quarterfinal, she cranked a walk-off double in the bottom of the seventh to power the Farmers into the next round. Loya's is <a href="http://www.denverpost.com/hochman/ci_26751286/dear-gabby-keeps-smiling" target="_blank">truly a comeback story</a>. Diagnosed with leukemia the summer before her freshman year of high school, she has battled the disease. With her leukemia in remission, Loya returned to the field in full form, winning the Jeffco 4A Player of the Year award.
+             <span class="vote"><a href="#" class="pick" id="7" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Terrance Knighton</strong>. Think back to September, when the second video of Ray Rice had come out, the one of him striking his then fiancée in a casino elevator. Rice had earlier been handed a mere two-game suspension for the incident, but the latest evidence that was made public was too much for many – including the Broncos’ defensive tackle, Terrance Knighton – to bear. So Knighton said something. He said something bold and he said at a time when many with fame and money still (although less so) choose to steer clear of contentious social issues. "I don't give a damn who u are or how much money you make," <a href="http://blogs.denverpost.com/broncos/2014/09/08/terrance-knighton-ray-rice-tweets/29292/" target="_blank">he tweeted</a>. "No place for this. As players we always speak on how we are unfairly treated, well now what?" He has since spoken out on the <a href="https://twitter.com/MrKnighton2u/status/537069201140486145" target="_blank">Darren Wilson trial</a> and <a href="https://twitter.com/MrKnighton2u/status/540324093782798336" target="_blank">Eric Garner</a> case. He's one of the few who has a platform and actually uses it.
+             <span class="vote"><a href="#" class="pick" id="8" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
+		<p><strong>Pablo Mastroeni</strong>. When Oscar Pareja bolted for Dallas last offseason, the Rapids handed the keys to a playoff-caliber team to club legend Pablo Mastroeni. Just months removed from retiring as a player, Mastroeni brought a thoughtful, philosophical approach to Commerce City, preaching hard work, teamwork and a de-emphasis on results. Early on it looked like a masterstroke by the Rapids’ front office, but injuries and a lack of defensive depth helped to spoil Mastroeni’s first season. His unorthodoxed lineup decisions frustrated his critics, and the Rapids slogged on a 14-game winless streak to miss the playoffs. For better or worse, Mastroeni was the most influential figure in Colorado soccer in 2014.
+             <span class="vote"><a href="#" class="pick" id="9" onClick="update_form('section_1', this); return false;">I pick Joe Ellis as Denver's most-influential sports figure in 2014</a></span>
+        </p>
 
 		<!--<div class="large-6 columns inset-video-right" id="blinkiesvideo">
 			<div class="vid-embed-wrap">
@@ -315,57 +363,32 @@
 <!-- SECTION WITH SIDEBARS & TOOLTIP VIDEO -->
 <div class="row">
 	<div class="large-10 large-centered medium-11 medium-centered small-12 columns">
-        <form id="section_1" name="section_1" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
+        <form id="section_2" name="section_2" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
 		<h3 class="subheading">Best Moments</h3>
-<script>
-function update_form(form_id, element)
-{
-    var post_data = [{name: "grade_input", value: element.id}];
-    var formURL = $('#' + form_id).attr('action');
-    $.ajax(
-    {
-        url: formURL,
-        type: 'POST',
-        data: post_data,
-        success:function(data, text_status, jqXHR) 
-        {
-            $(element).parent().removeClass('vote');
-            $(element).parent().addClass('voted');
-            $(element).parent().html('Thanks!');
-            // Hide the other vote links in that section
-            $('#' + form_id + ' span.vote').remove();
-        },
-        error: function(jqXHR, text_status, error_thrown) 
-        {
-            console.log(data, text_status, error_thrown);
-        }
-    });
-}
-</script>
 		<div class="large-6 medium-6 small-12 columns inset-video-right">
 			<img src="http://placehold.it/1200x600&text=Side+Photo" alt="alt" />
 			<p class="caption">Side photo caption.</p>
 		</div>
 		<p><strong>AFC championship</strong>. On Jan. 19, for the first time since the Broncos opened Sports Authority Field at Mile High in 2001, confetti rained upon the field. Beating the perennial powerhouse Patriots, 26-16, further legitimized the Broncos’ first conference championship in 15 years. 
-            <span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<p><strong>TD No. 509</strong>. The game against the San Francisco 49ers, <a href="http://www.denverpost.com/broncos/ci_26759835/peyton-manning-passes-brett-favre-td-record-509th" target="_blank">a 42-17 Broncos rout</a> on Oct. 19 at Sports Authority Field, was played before more than 77,000 and on Sunday night prime-time television. Manning entered the game needing two TD passes to tie Favre’s mark of 508, which Manning got in the first quarter with a three-yard completion to Emmanuel Sanders and a 20-yard catch-and-run by Wes Welker. The record-setting <a href="http://blogs.denverpost.com/broncos/2014/10/21/watch-peyton-manning-micd-record-touchdown-509/30484/" target="_blank">509th career TD pass</a> fittingly went to top receiver Demaryius Thomas on an eight-yard pass near the right pylon late in the first half. The Broncos receivers then used the historic ball as a prop in a keep-away game from Manning, a celebration that was staged during a Friday practice by Manning himself. He finished the game with 510.
-            <span class="vote"><a href="#" class="pick" id="2" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="2" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		
 		<p><strong>Brandon Barnes' inside-the-park homer</strong>. On June 14, the Rockies, on Barnes' <a href="http://www.denverpost.com/rockies/ci_25964811/brandon-barnes-inside-park-home-run-rallies-rockies" target="_blank">inside-the-parker</a>, swept the Giants in San Francisco. It was Colorado's best series of 2014. They threw the sink at the Giants, winning with defense, hitting, starting pitching, the bullpen and base-running. That the Giants went on to win the World Series and the Rockies lost 96 games is an important illustration. The Rockies showed great promise, but seasons aren't won in June. And the Rockies have a long way to go to be relevant in September.
-            <span class="vote"><a href="#" class="pick" id="3" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="3" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 
 		<p><strong>Tyler Matzek’s complete-game shutout</strong>. On Sept. 5, the Rockies’ rookie shut out the Padres <a href="http://www.denverpost.com/rockies/ci_26478748/tyler-matzek-pitches-three-hit-shutout-3-0" target="_blank">on just three hits</a> at Coors Field. It was Colorado's first complete game in Denver since 2011. Matzek's debut year hinted at his potential, but his ups and downs should have been expected. He'll need to improve going into 2015, but he's a key young piece in the Rockies’ rotation. Problem is, they need three Matzeks, or more. If he can work his way to the top of the rotation, though, it could go a long way to making them more competitive.
-            <span class="vote"><a href="#" class="pick" id="4" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="4" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<div class="large-6 medium-6 small-12 columns inset-video-right">
 			<img src="Randy Foye clip" alt="alt" />
 			<p class="caption">YouTube of Randy Foye game-winner.</p>
 		</div>
 		<p><strong>Randy Foye's game-winner</strong>. The Nuggets were simply trying to hold on. Players were dropping out due to injuries. Their play had been up and down, and when the Nuggets faced the heavily favored L.A. Clippers on Feb. 3, they entered having lost two straight home games and in need of something good. Foye delivered. Taking a pass from J.J. Hickson on the game's final play, Foye dribbled out to what seemed like Greeley before launching the shot. And as he held his breath &#8212; as the Pepsi Center crowd held its collective breath &#8212; the ball sailed a mile through the air and <a href="http://youtu.be/ydx6F7mzKnA" target="_blank">through the net</a>. Buzzer. Game over. Nuggets win. Foye was swarmed by his teammates in what was the most jubilant moment of a difficult season.
-            <span class="vote"><a href="#" class="pick" id="5" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="5" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<section class="large-6 medium-6 small-12 columns inset chart right hide-for-small">
 			<h3 class="subheading">Sidebar Graphic</h3>
@@ -375,30 +398,30 @@ function update_form(form_id, element)
 			</div>
 		</section>
 		<p><strong>Avalanche wins division title</strong>. Hours before they were to face the Anaheim Ducks in the final game of the 2013-14 regular season, the Avs won their division <a href="http://www.denverpost.com/avalanche/ci_25558913/avs-win-central-division-crown-blues-fall-detroit" target="_blank">for the first time since 2003</a>. The Red Wings had just beaten the Blues in St. Louis, leaving the Blues and Avs even at 111 in the standings. The Avs had the tiebreaker and went on to finish the season with 112 points. The party ended in Game 7 of the first round of the playoffs, against the Minnesota Wild, but Avs fans had reason to yell again.
-            <span class="vote"><a href="#" class="pick" id="6" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="6" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 
 		<p><strong>Varly breaks Roy's record</strong>. On April 11, the Avalanche defeated the Canucks, 4-2, in the third to last game of the season to take over the Central Division lead. Along the way, Semyon Varlamov broke coach Patrick Roy's <a href="http://www.denverpost.com/avalanche/ci_25543522/avalanche-beats-canucks-clinches-home-ice-playoffs-first" target="_blank">single-season wins record</a> with his 41st W. The Avs later won the division with 112 points, the second-most in the Western Conference in an astonishing turnaround season.
-            <span class="vote"><a href="#" class="pick" id="7" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="7" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 
 		<p><strong>CSU upsets Utah State</strong>. This was the Rams' football season in a microcosm. Deciding not to run out the clock and play for overtime, CSU quarterback Garrett Grayson hit a deep pass to Rashard Higgins in the final seconds, and then Jared Roberts kicked the game-winning field goal as the clock ran out. <a href="http://www.denverpost.com/colleges/ci_26755810/csu-rams-beat-utah-st-last-second-field" target="_blank">Rams 16, Aggies 13</a>. Not only was it an important and signature victory, but it came in front of the Rams' first sellout crowd at Hughes Stadium in 10 years.
-            <span class="vote"><a href="#" class="pick" id="8" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="8" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<p><strong>CU men’s cross country repeats</strong>. Colorado cross country coach Mark Wetmore said his team lacked its usual  "superstar." But did the Buffaloes ever have depth. The CU  men placed three in the top 10 &#8212; junior Ammar Moussa (fifth), sophomore Ben Saarel (seventh) and senior Blake Theroux (ninth) &#8212; and claimed the championship at Terre Haute, Ind., in November with a low of 65 points. Runner-up Stanford tallied 98 points. The title was the CU men’s team’s <a href="http://www.denverpost.com/colleges/ci_26993189/colorado-mens-cross-country-wins-fifth-ncaa-championship" target="_blank">fifth all-time</a>, but its first won in back-to-back years. Colorado returned its entire lineup from 2013 and was considered the prohibitive favorite to repeat as champion. That's not an easy task, Wetmore said. "It's so hard to be the favorites," he said. "It's so hard to have the attention, it's so hard for them to keep their egos in check and they really did it."
-            <span class="vote"><a href="#" class="pick" id="9" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="9" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<p><strong>Rapids' comeback win in Vancouver</strong>. The Rapids were 1-13-3 when allowing the first goal in 2014. But that one comeback win was a plum, coming in the fourth game of what started as a promising campaign. The Rapids <a href="http://www.denverpost.com/rapids/ci_25542387/rapids-jose-mari-quick-contribute-goal-oriented-mls" target="_blank">were down 1-0</a> to the Vancouver Whitecaps on April 5 when a controversial 77th minute red card to Vancouver’s Matias Laba opened the door. Two minutes after going up a man, Rapids midfielder Jose Mari hit a long-range, physics-bending strike that pinged off the inside of the far post for the equalizer. Two minutes later, Mari capped off the comeback with a right-footed bender from just outside the penalty area.
-            <span class="vote"><a href="#" class="pick" id="10" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="10" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<p><strong>Mikaela Shiffrin makes history</strong>. Midway through her second run of slalom at the Sochi Olympics, Mikaela Shiffrin had a seemingly insurmountable lead. Then she got off balance with her weight back. Her left ski came up in the air and she barely made it around the next gate. She thought the medal was gone and so did her mother, but Shiffrin gathered herself and fought back to win by 0.53 of a second, becoming the <a href="http://www.denverpost.com/olympics/ci_25198471/mikaela-shiffrin-colorado-leads-olympic-slalom-after-first" target="_blank">youngest Olympic slalom champion</a> in history.
-            <span class="vote"><a href="#" class="pick" id="11" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="11" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
 		<p><strong>“Creek Mystique” returns</strong>. Chalk this up to one of those "you-had-to-be-there" moments. For 40 minutes in the 5A championship, Cherry Creek and Valor Christian battled in one of the best prep football games in recent memory. Cherry Creek’s legendary coach, Dave Logan, was looking to return the Bruins to the days of the "Creek Mystique,” and in a game in which the momentum shifted like a heavyweight prize fight, Creek proved to be ever-so-slightly better, <a href="http://www.denverpost.com/preps/ci_27035615/cherry-creek-defeats-valor-christian-classic-5a-championship" target="_blank">winning, 25-24</a>.
-            <span class="vote"><a href="#" class="pick" id="12" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+            <span class="vote"><a href="#" class="pick" id="12" onClick="update_form('section_2', this); return false;">This was my favorite 2014 moment</a></span>
         </p>
-<input type="hidden" id="grade_input" value="" />
-</form>
+        <input type="hidden" id="grade_input" value="" />
+    </form>
 </section>
 <!-- NEW SECTION LINK-->
 <section id="part4" class="omnitrig" data-omni-url="#part4" data-omni-title="Part 4: Forgettable Moments">
