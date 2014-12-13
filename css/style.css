@@ -1072,3 +1072,13 @@ div#footer-bar ul.social li {
         font-size: 1em;
     }
 }
+
+p.span.voted::before, p span.vote::before { content: " ››› "; }
+p span.vote, p span.voted
+{
+    display: block-inline;
+    padding: 0 5px;
+    font-weight: bold;
+    background-color: rgb(253, 255, 157);
+}
+p span.voted { background-color: rgb(159, 255, 157); }

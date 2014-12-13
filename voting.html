@@ -6,6 +6,36 @@
 
 <!--
 =======================================
+IN THE HEAD ELEMENT
+=======================================
+-->
+<script>
+function update_form(form_id, element)
+{
+    var post_data = [{name: "grade_input", value: element.id}];
+    var formURL = $('#' + form_id).attr('action');
+    $.ajax(
+    {
+        url: formURL,
+        type: 'POST',
+        data: post_data,
+        success:function(data, text_status, jqXHR) 
+        {
+            $(element).parent().removeClass('vote');
+            $(element).parent().addClass('voted');
+            $(element).parent().html('Thanks!');
+            // Hide the other vote links in that section
+            $('#' + form_id + ' span.vote').remove();
+        },
+        error: function(jqXHR, text_status, error_thrown) 
+        {
+            console.log(data, text_status, error_thrown);
+        }
+    });
+}
+</script>
+<!--
+=======================================
 AT THE TOP OF EACH SECTION
 =======================================
 -->
@@ -17,48 +47,13 @@ ON THE BOTTOM OF EACH DISTINCT ITEM
 1. Add the span before the closing </p> element. 
 2. For each item, increment the id by 1.
 -->
-<span><a href="#" class="pick" id="1" onClick="section_1_update_form(this); return false;">pick this for the XXXXXX in 2014</a></span>
+<span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
 
 <!--
 =======================================
 ON THE BOTTOM OF EACH SECTION
 =======================================
 -->
-    <input class="submit" id="section_1_submit" type="image" src="http://extras.mnginteractive.com/live/media/site36/2014/1211/20141211_053619_submit-pick.gif" alt="Submit Your Pick">
+<input type="hidden" id="grade_input" value="" />
 </form>
-<div id="result"><p></p></div>
-<script>
-function section_1_update_form(element)
-{
-    jQuery('#section_1 #grade_input').val(lookup[element.id]);
-    jQuery('#section_1_submit').prop('disabled', false);
-    return false;
-}
 
-$('#section_1').submit(function(e)
-{
-    var post_data = $(this).serializeArray();
-    var formURL = $(this).attr('action');
-    $.ajax(
-    {
-        url: formURL,
-        type: 'POST',
-        data: post_data,
-        success:function(data, text_status, jqXHR) 
-        {
-            $('#section_1 #result').show();
-            $('#section_1 .submit').hide();
-            $('#section_1 #result p').html('<strong>Readers rated this a ' + letter_grade + ' on average, ' + voters + ' have voted.</strong><span></span><svg class=\'chart\'></svg>');
-
-            // If we have a breakdown of the letter grades, we publish them.
-            $('#section_1 #result p').text('Thanks!');
-        },
-        error: function(jqXHR, text_status, error_thrown) 
-        {
-            console.log(data, text_status, error_thrown);
-        }
-    });
-    e.preventDefault(); // STOP default action
-    $(this).attr('action', '');
-});
-</script>
