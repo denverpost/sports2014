@@ -607,6 +607,11 @@ a:hover, * a:hover, a:hover * {
     color:rgba(0,0,0,0.5);
     font-weight:700;
 }
+.timeline {
+    padding-bottom: 2em;
+    margin-bottom: 4em;
+    border-bottom: 1px #ccc solid;
+}
 .centergallery {
     width:100%;
     max-height:100%;
