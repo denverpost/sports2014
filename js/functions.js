@@ -169,8 +169,8 @@ var adTimes = getAdTimes(3);
 
 $('.chart-late').find('img').unveil(300);
 
-$('#charlotteswebphotos').find('img').unveil(300, function() {
-    $('#charlotteswebphotos.centergallery').slick({
+$('#dpsportsphotos2014').find('img').unveil(600, function() {
+    $('#dpsportsphotos2014.centergallery').slick({
         centerMode: true,
         centerPadding: '15%',
         slidesToShow: 1,
@@ -178,42 +178,6 @@ $('#charlotteswebphotos').find('img').unveil(300, function() {
         nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
         responsive: [{
             breakpoint: 800,
-            settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: '8%',
-                slidesToShow: 1
-            }
-        }]
-    });
-});
-$('#prestonphotos').find('img').unveil(300, function() {
-    $('#prestonphotos.centergallery').slick({
-        centerMode: true,
-        centerPadding: '15%',
-        slidesToShow: 1,
-        prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
-        nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
-        responsive: [{
-            breakpoint: 801,
-            settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: '8%',
-                slidesToShow: 1
-            }
-        }]
-    });
-});
-$('#otherfamilies').find('img').unveil(300, function() {
-    $('#otherfamilies.centergallery').slick({
-        centerMode: true,
-        centerPadding: '15%',
-        slidesToShow: 1,
-        prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
-        nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
-        responsive: [{
-            breakpoint: 801,
             settings: {
                 arrows: true,
                 centerMode: true,
