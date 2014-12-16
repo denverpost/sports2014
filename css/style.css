@@ -182,7 +182,7 @@ p.bylinebottom {
     clear:both;
 }
 .listname {
-    font-size:1.5em;
+    font-size:1.8em;
 }
 section.inset a.hideme, section.inset a.expandme {
     text-transform: uppercase;
@@ -1109,8 +1109,8 @@ p span.vote, p span.voted
   border-radius: .25em;
   font-family: Georgia;
   color: #ffffff;
-  font-size: 1.5em;
-  padding: .8em 1.25em;
+  font-size: 1.1em;
+  padding: .5em 1.1em;
   text-decoration: none;
 }
 p span.voted 
