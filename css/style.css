@@ -159,7 +159,7 @@ p.byline {
     text-align:center;
     font-size:1.2em;
     font-style: italic;
-    margin-bottom:2em;
+    margin-bottom:1.5em;
 }
 p.bylinebottom {
     text-align:center;
@@ -235,7 +235,7 @@ section.inset.left {
 section.inset.right h3.subheading,
 section.inset.left h3.subheading {
     font-size:1.6em;
-    width:90%;
+    width:100%;
 }
 section.inset + section.inset {
     margin-top:12em;
@@ -530,9 +530,9 @@ h3.subheading {
     font-weight:700;
     display:block;
     text-align:center;
-    margin:3.0em auto 1.5em;
+    margin:2.0em auto 1.5em;
     padding:.5em 0;
-    width:90%;
+    width:100%;
     border-bottom:1px solid rgba(0,0,0,.3);
 }
 p.small {
@@ -989,7 +989,7 @@ div#footer-bar ul.social li {
     h3.subheading {
         font-size:1.5em;
         margin:2.5em auto 1.5em;
-        width:80%;
+        width:100%;
     }
     section.inset h3.subheading {
         font-size:1.6em;
