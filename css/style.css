@@ -182,7 +182,7 @@ p.bylinebottom {
     clear:both;
 }
 .listname {
-    font-size:1.5em;
+    font-size:2em;
 }
 section.inset a.hideme, section.inset a.expandme {
     text-transform: uppercase;
@@ -1089,6 +1089,7 @@ p.span.voted::before, p span.vote::before { content: " ››› "; }
 p span.vote a, p span.voted a
 {
   color: white;
+  text-decoration: none;
 }
 p span.vote, p span.voted
 {
@@ -1109,9 +1110,19 @@ p span.vote, p span.voted
   border-radius: .25em;
   font-family: Georgia;
   color: #ffffff;
-  font-size: 1.5em;
-  padding: .8em 1.25em;
+  font-size: 1em;
+  padding: .1em .75em;
+  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
   text-decoration: none;
+}
+p span.vote:hover
+{
+  background: #f0e68c;
+  background-image: -webkit-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -moz-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -ms-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -o-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: linear-gradient(to bottom, #f0e68c, #bdb76b);
 }
 p span.voted 
 { 
