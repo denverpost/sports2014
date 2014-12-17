@@ -1,6 +1,7 @@
 var pathRoot = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
 var titleRoot = document.title;
 var current = '';
+var galleriesLoaded = [];
 /* THIS IS CONFIG DATA SPECIFIC TO SITE */
 var pages = ['#titlepage','#reflection','#people','#best','#worst','#wishlist','#photos','#timeline'];
 var galleries = ['#photos'];
@@ -21,24 +22,27 @@ function rewrite_url(path, new_title) {
 }
 function revealSlides(galleries) {
     for (key in galleries) {
-        $(galleries[key]).find('img').unveil(-1,function() {
-            $(galleries[key]+'.centergallery').slick({
-                centerMode: true,
-                centerPadding: '15%',
-                slidesToShow: 1,
-                prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
-                nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
-                responsive: [{
-                    breakpoint: 800,
-                    settings: {
-                        arrows: true,
-                        centerMode: true,
-                        centerPadding: '8%',
-                        slidesToShow: 1
-                    }
-                }]
+        if (galleriesLoaded.indexOf(galleries[key]) == -1) {
+            $(galleries[key]).find('img').unveil(-1,function() {
+                $(galleries[key]+'.centergallery').slick({
+                    centerMode: true,
+                    centerPadding: '15%',
+                    slidesToShow: 1,
+                    prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
+                    nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
+                    responsive: [{
+                        breakpoint: 800,
+                        settings: {
+                            arrows: true,
+                            centerMode: true,
+                            centerPadding: '8%',
+                            slidesToShow: 1
+                        }
+                    }]
+                });
             });
-        });
+            galleriesLoaded.push(galleries[key]);
+        }
     }
 }
 
