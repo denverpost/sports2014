@@ -59,7 +59,7 @@ body {
     margin-bottom:1em;
 }
 #titlepage {
-    background-image:url('/sportsyear14/img/leader-broncos.jpg');
+    background-image:url('../img/leader-broncos.jpg');
 }
 .opener div#title {
     position: absolute;

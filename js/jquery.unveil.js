@@ -30,6 +30,7 @@
 
     function unveil() {
       var inview = images.filter(function() {
+        if (th == -1) return true;
         var $e = $(this);
         if ($e.is(":hidden")) return;
 
