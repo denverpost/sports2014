@@ -210,9 +210,6 @@ function checkPageState(pages) {
         var currentpage = pages[key];
         var next = (pages[parseInt(key) + 1]) ? pages[parseInt(key) + 1] : currentpage;
         var prev = (pages[parseInt(key) - 1]) ? pages[parseInt(key) - 1] : currentpage;
-        console.log(currentpage);
-        console.log(next);
-        console.log(prev);
         if (isElementInViewport(currentpage) && !isElementInViewport(next) & !isElementInViewport(prev) && current != currentpage) {
             var triggerDiv = $(currentpage);
             rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
