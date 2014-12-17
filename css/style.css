@@ -58,14 +58,8 @@ body {
     z-index: -2;
     margin-bottom:1em;
 }
-#part1intro {
+#titlepage {
     background-image:url('http://placehold.it/1800x1301&text=Big+Leader+Photo');
-}
-#part2intro {
-    background-image:url('../img/opener-part2.jpg');
-}
-#part3intro {
-    background-image:url('../img/opener-part3.jpg');
 }
 .opener div#title {
     position: absolute;

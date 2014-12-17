@@ -1,11 +1,9 @@
-$(document).foundation('reveal', {
-    animation: 'fade',
-    animationspeed: 200
-});
-
 var pathRoot = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
 var titleRoot = document.title;
 var current = '';
+/* THIS IS CONFIG DATA SPECIFIC TO SITE */
+var pages = ['#titlepage','#reflection','#people','#best','#worst','#wishlist','#photos','#timeline'];
+var galleries = ['#photos'];
 
 function load_omniture() {
         var omni = $('#omniture').html();
@@ -21,20 +19,37 @@ function rewrite_url(path, new_title) {
         document.title = (new_title === 'root' ) ? titleRoot : new_title + ' - ' + titleRoot;
         window.history.replaceState('', new_title, url);
 }
-
-function revealCredits() {
-    $('#credits').foundation('reveal', 'open');
+function revealSlides(galleries) {
+    for (key in galleries) {
+        $(galleries[key]).find('img').unveil();
+        $(galleries[key]+'.centergallery').slick({
+            centerMode: true,
+            centerPadding: '15%',
+            slidesToShow: 1,
+            prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
+            nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
+            responsive: [{
+                breakpoint: 800,
+                settings: {
+                    arrows: true,
+                    centerMode: true,
+                    centerPadding: '8%',
+                    slidesToShow: 1
+                }
+            }]
+        });
+    }
 }
 
 function checkHash() {
     if (window.location.hash) {
-       var hash = window.location.hash;
-       hash = (hash == '#charlotteswebvideo') ? '#charlottesweb' : hash;
-       if ($(hash).hasClass('hide')) {
+        revealSlides(galleries);
+        var hash = window.location.hash;
+        if ($(hash).hasClass('hide')) {
             toggleSidebar(hash,hash + 'link');
-       } else {
+        } else {
             scrollDownTo(hash);
-       }
+        }
     }
 }
 
@@ -79,6 +94,7 @@ function isVisible(element) {
 }
 
 function isElementInViewport(el) {
+    el = el.replace('#','');
     var rect = document.getElementById(el).getBoundingClientRect();
 
     return rect.bottom > 0 &&
@@ -112,6 +128,14 @@ function fadeNavBar(reverse) {
         $('#name1').animate({opacity:0},500);
         $('#name2').animate({opacity:1},500);
         titleFade = false;
+    }
+}
+
+function checkFade() {
+    if ( !isElementInViewport('titlepage') && titleFade ) {
+        fadeNavBar(false);
+    } else if (isElementInViewport('titlepage') && !titleFade) {
+        fadeNavBar(true);
     }
 }
 
@@ -167,40 +191,7 @@ function getAdTimes(numAds) {
 
 var adTimes = getAdTimes(3);
 
-$('.chart-late').find('img').unveil(300);
-
-$('#dpsportsphotos2014').find('img').unveil(600, function() {
-    $('#dpsportsphotos2014.centergallery').slick({
-        centerMode: true,
-        centerPadding: '15%',
-        slidesToShow: 1,
-        prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
-        nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>',
-        responsive: [{
-            breakpoint: 800,
-            settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: '8%',
-                slidesToShow: 1
-            }
-        }]
-    });
-});
-
-$(document).ready(function() {
-    checkHash();
-    if ( !isElementInViewport('part1intro') && titleFade ) {
-        fadeNavBar(false);
-    }
-    if ( $(window).scrollTop() > adTimes[0] ) {
-        if (moreAd) {
-            showAd();
-        }
-    }
-});
-
-$(window).scroll(function() {
+function checkAdPos() {
     for (var i = 1; i < adTimes.length; i++) {
         if (adTimes[i] > ($(window).scrollTop() - 35) && adTimes[i] < ($(window).scrollTop() + 35)) {
             hideAdManual();
@@ -212,37 +203,40 @@ $(window).scroll(function() {
             showAd();
         }
     }
-    if ( !isElementInViewport('part1intro') && titleFade ) {
-        fadeNavBar(false);
-    } else if (isElementInViewport('part1intro') && !titleFade) {
-        fadeNavBar(true);
-    }
-    if (isElementInViewport('part1intro') && current != '') {
-        var triggerDiv = $('#part1intro');
-        rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
-    }
-    if (isElementInViewport('part1') && !isElementInViewport('part1intro') & !isElementInViewport('part2') && current != '#part1') {
-        var triggerDiv = $('#part1');
-        rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
-        if ($(triggerDiv).hasClass('omnitrig')) {
-            load_omniture();
-            $(triggerDiv).removeClass('omnitrig');
+}
+
+function checkPageState(pages) {
+    for (key in pages) {
+        var currentpage = pages[key];
+        var next = (pages[parseInt(key) + 1]) ? pages[parseInt(key) + 1] : currentpage;
+        var prev = (pages[parseInt(key) - 1]) ? pages[parseInt(key) - 1] : currentpage;
+        console.log(currentpage);
+        console.log(next);
+        console.log(prev);
+        if (isElementInViewport(currentpage) && !isElementInViewport(next) & !isElementInViewport(prev) && current != currentpage) {
+            var triggerDiv = $(currentpage);
+            rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
+            if ($(triggerDiv).hasClass('omnitrig')) {
+                load_omniture();
+                $(triggerDiv).removeClass('omnitrig');
+            }
         }
     }
-    if (isElementInViewport('part2') && !isElementInViewport('part1') && !isElementInViewport('part3') && current != '#part2') {
-        var triggerDiv = $('#part2');
-        rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
-        if ($(triggerDiv).hasClass('omnitrig')) {
-            load_omniture();
-            $(triggerDiv).removeClass('omnitrig');
-        }
-    }
-    if (isElementInViewport('part3') && !isElementInViewport('part2') && current != '#part3') {
-        var triggerDiv = $('#part3');
-        rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
-        if ($(triggerDiv).hasClass('omnitrig')) {
-            load_omniture();
-            $(triggerDiv).removeClass('omnitrig');
-        }
-    }
+}
+
+$(document).ready(function() {
+    checkHash();
+    checkAdPos();
 });
+
+var didScroll = false;
+$(window).scroll(function() {
+    didScroll = true;    
+});
+setInterval(function() {
+    if (didScroll) {
+        checkFade();
+        checkPageState(pages);
+        checkAdPos();
+    }
+},250);
