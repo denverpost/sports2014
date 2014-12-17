@@ -578,10 +578,10 @@ a:hover, * a:hover, a:hover * {
     display:inline-block;
 }
 .twinphoto .photoleft .caption {
-    padding-left:1em;
+    padding-left:.4em;
 }
 .twinphoto .photoright .caption {
-    padding-right:1em;
+    padding-right:.4em;
 }
 .centerphoto {
     width:100%;
@@ -1110,7 +1110,7 @@ p span.vote, p span.voted
   font-family: Georgia;
   color: #ffffff;
   font-size: 1.1em;
-  padding: .5em 1.1em;
+  padding: .3em .9em;
   text-decoration: none;
 }
 p span.voted 
@@ -1121,4 +1121,5 @@ p span.voted
   background-image: -ms-linear-gradient(top, #27c239, #0d7a1e);
   background-image: -o-linear-gradient(top, #27c239, #0d7a1e);
   background-image: linear-gradient(to bottom, #27c239, #0d7a1e);
+  text-decoration: none;
 }
