@@ -397,7 +397,7 @@ div.title h2 {
     z-index:-1;
 }
 div.title h1 {
-    margin:.25em auto 2em;
+    margin:.25em auto 2.0em;
     text-align: center;
     font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
     font-size:5em;
