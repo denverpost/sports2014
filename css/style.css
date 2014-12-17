@@ -114,7 +114,13 @@ p.byline {
     text-align:center;
     font-size:1.0em;
     font-style: italic;
-    margin-bottom:1.3em;
+    margin-bottom:2.5em;
+}
+p.byline2 {
+    text-align:left;
+    font-size:1.0em;
+    font-style: italic;
+    margin-bottom:2.0em;
 }
 p.bylinebottom {
     text-align:center;
