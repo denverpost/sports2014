@@ -58,14 +58,8 @@ body {
     z-index: -2;
     margin-bottom:1em;
 }
-#part1intro {
+#titlepage {
     background-image:url('http://placehold.it/1800x1301&text=Big+Leader+Photo');
-}
-#part2intro {
-    background-image:url('../img/opener-part2.jpg');
-}
-#part3intro {
-    background-image:url('../img/opener-part3.jpg');
 }
 .opener div#title {
     position: absolute;
@@ -1089,6 +1083,7 @@ p.span.voted::before, p span.vote::before { content: " ››› "; }
 p span.vote a, p span.voted a
 {
   color: white;
+  text-decoration: none;
 }
 p span.vote, p span.voted
 {
@@ -1111,7 +1106,17 @@ p span.vote, p span.voted
   color: #ffffff;
   font-size: 1.1em;
   padding: .3em .9em;
+  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
   text-decoration: none;
+}
+p span.vote:hover
+{
+  background: #f0e68c;
+  background-image: -webkit-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -moz-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -ms-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: -o-linear-gradient(top, #f0e68c, #bdb76b);
+  background-image: linear-gradient(to bottom, #f0e68c, #bdb76b);
 }
 p span.voted 
 { 
