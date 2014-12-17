@@ -1,0 +1,59 @@
+
+<!-- With each section: 
+1. Add the specified markup and javascript.
+2. For each section after the first, increment the "section_1" to "section_2" "section_3" etc. wherever that text appears.
+-->
+
+<!--
+=======================================
+IN THE HEAD ELEMENT
+=======================================
+-->
+<script>
+function update_form(form_id, element)
+{
+    var post_data = [{name: "grade_input", value: element.id}];
+    var formURL = $('#' + form_id).attr('action');
+    $.ajax(
+    {
+        url: formURL,
+        type: 'POST',
+        data: post_data,
+        success:function(data, text_status, jqXHR) 
+        {
+            $(element).parent().removeClass('vote');
+            $(element).parent().addClass('voted');
+            $(element).parent().html('Thanks!');
+            // Hide the other vote links in that section
+            $('#' + form_id + ' span.vote').remove();
+        },
+        error: function(jqXHR, text_status, error_thrown) 
+        {
+            console.log(data, text_status, error_thrown);
+        }
+    });
+}
+</script>
+<!--
+=======================================
+AT THE TOP OF EACH SECTION
+=======================================
+-->
+<form id="section_1" action="http://denverpostplus.com/app/yearend_sports/index.php" method="POST">
+<!--
+=======================================
+ON THE BOTTOM OF EACH DISTINCT ITEM
+=======================================
+1. Add the span before the closing </p> element. 
+2. For each item, increment the id by 1.
+-->
+<span class="vote"><a href="#" class="pick" id="1" onClick="update_form('section_1', this); return false;">This was my favorite 2014 moment</a></span>
+
+<!--
+=======================================
+ON THE BOTTOM OF EACH SECTION
+=======================================
+-->
+<input type="hidden" id="grade_input" value="" />
+</form>
+
