@@ -1,4 +1,4 @@
-var pathRoot = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+var pathRoot = window.location.protocol + '//' + window.location.hostname + window.location.pathname + (window.location.port ? ':'+window.location.port : '');
 var titleRoot = document.title;
 var current = '';
 var galleriesLoaded = [];
