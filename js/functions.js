@@ -6,6 +6,28 @@ var galleriesLoaded = [];
 var pages = ['#titlepage','#reflection','#people','#best','#worst','#wishlist','#photos','#timeline'];
 var galleries = ['#photos'];
 
+function revealSocial(type,link,title,image,desc,twvia,twrel) {
+    title = typeof title !== 'undefined' ? title : false;
+    image = typeof image !== 'undefined' ? image : false;
+    desc = typeof desc !== 'undefined' ? desc : false;
+    twvia = typeof twvia !== 'undefined' ? twvia : false;
+    twrel = typeof twrel !== 'undefined' ? twrel : false;
+    //type can be twitter, facebook or gplus
+    var srcurl = '';
+    if (type == 'twitter') {
+        srcurl = 'http://twitter.com/share?text=' + title + '&url=' + link + '&via=' + twvia + '&related=' + twrel;
+    } else if (type == 'facebook') {
+        srcurl = 'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + link + '&p[images][0]=' + image + '&p[title]=' + encodeURIComponent(title) + '&p[summary]=' + encodeURIComponent(desc);
+    } else if (type == 'gplus') {
+        srcurl = 'https://plus.google.com/share?url=' + link;
+    }
+    console.log(srcurl);
+    if (srcurl.length > 1) {
+        window.open(srcurl, type, 'left=60,top=60,width=500,height=500,toolbar=1,resizable=1').focus();
+    }
+    return false;
+}
+
 function load_omniture() {
         var omni = $('#omniture').html();
         $('#omniture').after('<div id="new_omni">' + omni + '</div>');
