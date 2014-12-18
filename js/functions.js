@@ -237,6 +237,7 @@ setInterval(function() {
     if (didScroll) {
         checkFade();
         checkPageState(pages);
+        revealSlides(galleries);
         checkAdPos();
     }
 },250);
