@@ -101,11 +101,9 @@ function isVisible(element) {
 function isElementInViewport(el) {
     el = el.replace('#','');
     var rect = document.getElementById(el).getBoundingClientRect();
-
-    return rect.bottom > 0 &&
-        rect.right > 0 &&
-        rect.left < (window.innerWidth || document. documentElement.clientWidth) /*or $(window).width() */ &&
-        rect.top < (window.innerHeight || document. documentElement.clientHeight) /*or $(window).height() */;
+    var half = window.innerHeight / 2;
+    var whole = window.innerHeight;
+    return ( (rect.top > 0 && rect.top < half) || (rect.bottom < whole && rect.bottom > half) || (rect.top < 0 && rect.bottom > whole) );
 }
 
 $('.top-top').click(function(evt) {
@@ -215,7 +213,7 @@ function checkPageState(pages) {
         var currentpage = pages[key];
         var next = (pages[parseInt(key) + 1]) ? pages[parseInt(key) + 1] : currentpage;
         var prev = (pages[parseInt(key) - 1]) ? pages[parseInt(key) - 1] : currentpage;
-        if (isElementInViewport(currentpage) && !isElementInViewport(next) & !isElementInViewport(prev) && current != currentpage) {
+        if (isElementInViewport(currentpage) && currentpage != current) {
             var triggerDiv = $(currentpage);
             rewrite_url($(triggerDiv).data('omniUrl'),$(triggerDiv).data('omniTitle'));
             if ($(triggerDiv).hasClass('omnitrig')) {
