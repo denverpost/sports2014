@@ -1,4 +1,4 @@
-var pathRoot = window.location.protocol + '//' + window.location.hostname + window.location.pathname + (window.location.port ? ':'+window.location.port : '');
+var pathRoot = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':'+window.location.port : '') + window.location.pathname;
 var titleRoot = document.title;
 var current = '';
 var galleriesLoaded = [];
@@ -24,7 +24,7 @@ function revealSlides(galleries) {
     for (key in galleries) {
         if (galleriesLoaded.indexOf(galleries[key]) == -1) {
             $(galleries[key]).find('img').unveil(-1,function() {
-                $(galleries[key]+'.centergallery').slick({
+                $(galleries[key]+'gallery.centergallery').slick({
                     centerMode: true,
                     centerPadding: '15%',
                     slidesToShow: 1,
